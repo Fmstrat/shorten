@@ -48,6 +48,6 @@ $enabled = true;
 
 Lastly, visit the administration page for ownCloud and in the *Shorten* configuration include your shortening server's URL, which is everything before *?SHORTCODE*. In this case:
 ```
-https://mydomain.ext/s*
+https://mydomain.ext/s
 ```
 At this point, when you check the box to share a file publically, the app will replace the public share link displayed in the ownCloud web interface.
