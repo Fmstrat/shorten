@@ -1,11 +1,16 @@
-# shorten
-A URL Shortening and Privacy Tool for ownCloud
+# Shorten
+Shorten is an add-on app for ownCloud that enables one-click URL shortening. It's features include:
+- Automatic replacement of the public share URL with the shortened URL
+- No need to create a seperate "Shorten" URL
+- Ability to completely hide the ownCloud server by proxying shortened requests through another server
+    - Note: While normal shares will never expose the ownCloud URL, password protected files will as the password display screen must be supplied to the user.
 
 ## Installation
 
 **Step 1: Install the add-on**
 
-Place this app in *owncloud/apps/shorten* (Rename the extracted ZIP to "shorten" or you will receive errors)
+- Place this app in *owncloud/apps/shorten* (Rename the extracted ZIP to "shorten" or you will receive errors)
+- Re-login to owncloud and run the update
 
 **Step 2: Setup the shortening server**
 
