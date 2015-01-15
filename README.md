@@ -46,7 +46,7 @@ $enabled = true;
 
 **Step 3: Configure the app**
 
-Lastly, visit the administration page for owCcloud and in the *Shorten* configuration include your shortening server's URL, which is everything before *?SHORTCODE*. In this case:
+Lastly, visit the administration page for ownCloud and in the *Shorten* configuration include your shortening server's URL, which is everything before *?SHORTCODE*. In this case:
 ```
 https://mydomain.ext/s*
 ```
