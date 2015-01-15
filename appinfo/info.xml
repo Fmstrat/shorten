@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<info>
+	<id>shorten</id>
+	<name>Shorten</name>
+	<description>Easy one-click URL shortener and privatizer</description>
+	<licence>GPL</licence>
+	<require>7.0.4</require>
+	<author>Ben Curtis</author>
+	<types>
+		<filesystem/>
+	</types>
+	<version>0.0.1</version>
+	<default_enable/>
+</info>
