@@ -21,7 +21,7 @@ Next, you must setup your shortening server. This can be the same webserver you 
 
 To accomplish this, you should copy the *REMOTE-HOST/index.php* to the remote host, however you wish. In this example we use scp:
 ```
-mlongdomain ~# scp /var/www/owncloud/apps/shorten/REMOTE-HOST/index.php root@mydomain.ext:/var/www/s/index.php
+mylongdomain ~# scp /var/www/owncloud/apps/shorten/REMOTE-HOST/index.php root@mydomain.ext:/var/www/s/index.php
 ```
 
 Next, on the shortening server, edit the file to include your ownCloud server URL and set enabled to true:
