@@ -7,12 +7,17 @@ Shorten is an add-on app for ownCloud that enables one-click URL shortening. It'
 
 ## Installation
 
-**Step 1: Install the add-on**
+### Step 1: Install the add-on
 
 - Place this app in *owncloud/apps/shorten* (Rename the extracted ZIP to "shorten" or you will receive errors)
 - Re-login to owncloud and run the update
 
-**Step 2: Setup the shortening server**
+### Step 2: Setup the shortening server
+
+#### *Step 2 - Option A: goo.gl*
+To use http://goo.gl, all you need to do is aquire an API key to use in the admin settings. You can aquire a key using these instructions from Google: *https://developers.google.com/url-shortener/v1/getting_started#APIKey*
+  
+#### *Step 2 - Option B: Internal shortener and privacy filter*
 
 Next, you must setup your shortening server. This can be the same webserver you are running ownCloud on, or a completely different server to enable a privacy filter for your owncloud installation. For the purpose of this guide, we will assume your setup is:
 - Your owncloud server is at *https://mylongdomain.ext:port/owncloud*
@@ -44,10 +49,12 @@ $enabled = true;
 #$enabled = false;
 ```
 
-**Step 3: Configure the app**
+### Step 3: Configure the app
 
-Lastly, visit the administration page for ownCloud and in the *Shorten* configuration include your shortening server's URL, which is everything before *?SHORTCODE*. In this case:
+Lastly, visit the administration page for ownCloud and in the *Shorten* configuration include your shortening server's URL, which is everything before *?SHORTCODE* if you are using the internal shortener. In this case:
 ```
 https://mydomain.ext/s
 ```
+If you're using http://goo.gl, you would need to include your API key in the provided settings box.
+
 At this point, when you check the box to share a file publically, the app will replace the public share link displayed in the ownCloud web interface.
