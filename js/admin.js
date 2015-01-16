@@ -9,9 +9,29 @@ $(document).ready(function() {
 			val = val.substring(0, val.length-1);
 			$(this).val(val);
 		}
-	        $.post(OC.linkTo("shorten","ajax/sethost.php"), { host: val }, function (data) {
+	        $.post(OC.linkTo("shorten","ajax/setval.php"), { host: val }, function (data) {
 			 console.log('response', data);
         	});
+	});
+	$('#shorten-api').change(function() {
+		var val = $(this).val();
+	        $.post(OC.linkTo("shorten","ajax/setval.php"), { api: val }, function (data) {
+			 console.log('response', data);
+        	});
+	});
+	$('#shorten-type').change(function() {
+		var val = $(this).val();
+	        $.post(OC.linkTo("shorten","ajax/setval.php"), { type: val }, function (data) {
+			 console.log('response', data);
+        	});
+		if (val == "internal") {
+			$('#shorten-internal-settings').css('display', 'block');
+			$('#shorten-googl-settings').css('display', 'none');
+		}
+		if (val == "googl") {
+			$('#shorten-internal-settings').css('display', 'none');
+			$('#shorten-googl-settings').css('display', 'block');
+		}
 	});
 });
 

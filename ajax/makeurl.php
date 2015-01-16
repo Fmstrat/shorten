@@ -3,8 +3,11 @@
 \OCP\User::checkLoggedIn();
 \OCP\App::checkAppEnabled('ownnote');
 
+
 //$newHost = "https://nowsci.com/s/";
-$newHost = OCP\Config::getAppValue('shorten', 'host', '');
+$host = OCP\Config::getAppValue('shorten', 'host', '');
+$type = OCP\Config::getAppValue('shorten', 'type', '');
+$api = OCP\Config::getAppValue('shorten', 'api', '');
 
 function startsWith($haystack, $needle) {
     return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== FALSE;
@@ -48,12 +51,25 @@ function getShortcode($url) {
 }
 
 $curUrl = $_POST['curUrl'];
-if ($newHost == "" || startsWith($curUrl, $newHost)) {
-	echo $curUrl;
+if (isset($type) && ($type == "" || $type == "internal")) {
+	if ($host == "" || startsWith($curUrl, $host)) {
+		echo $curUrl;
+	} else {
+		$shortcode = getShortcode($curUrl);
+		$newUrl = $host."?".$shortcode;
+		echo $newUrl;
+	}
+} elseif ($type == "googl") {
+	if ($api && $api != "") {
+		require_once __DIR__ . '/../lib/class.googl.php';
+		$googl = new googl($api);
+		$short = $googl->s($curUrl);
+		echo $short;
+	} else {
+		echo $curUrl;
+	}
 } else {
-	$shortcode = getShortcode($curUrl);
-	$newUrl = $newHost."?".$shortcode;
-	echo $newUrl;
+	echo $curUrl;
 }
 
 ?>
