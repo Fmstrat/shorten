@@ -3,7 +3,7 @@ Shorten is an add-on app for ownCloud that enables one-click URL shortening. It'
 - Automatic replacement of the public share URL with the shortened URL
 - No need to create a seperate "Shorten" URL
 - Internal shortner or goo.gl support
-- Ability to completely hide the ownCloud server with the internall shortener by proxying shortened requests through another server
+- Ability to completely hide the ownCloud server with the internal shortener by proxying shortened requests through another server
     - Note: While normal shares will never expose the ownCloud URL, password protected files will as the password display screen must be supplied to the user.
 
 ## Installation
