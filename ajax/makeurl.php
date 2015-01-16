@@ -6,6 +6,9 @@
 //$newHost = "https://nowsci.com/s/";
 $newHost = OCP\Config::getAppValue('shorten', 'host', '');
 
+function startsWith($haystack, $needle) {
+    return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== FALSE;
+}
 
 function rand_chars($length) {
 	$urlString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -45,7 +48,7 @@ function getShortcode($url) {
 }
 
 $curUrl = $_POST['curUrl'];
-if ($newHost == "") {
+if ($newHost == "" || startsWith($curUrl, $newHost)) {
 	echo $curUrl;
 } else {
 	$shortcode = getShortcode($curUrl);
