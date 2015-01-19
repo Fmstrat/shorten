@@ -1,6 +1,6 @@
 <?php
 
-\OCP\App::checkAppEnabled('ownnote');
+\OCP\App::checkAppEnabled('shorten');
 
 function validateCode($string) {
 	if(preg_match("/^[\w]+$/", $string)) {

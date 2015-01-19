@@ -1,7 +1,7 @@
 <?php
 
 OCP\User::checkAdminUser();
-\OCP\App::checkAppEnabled('ownnote');
+\OCP\App::checkAppEnabled('shorten');
 
 if ($_POST['host']) {
 	OCP\Config::setAppValue('shorten', 'host', $_POST['host']);

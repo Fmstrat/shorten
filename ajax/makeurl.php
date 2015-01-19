@@ -1,7 +1,7 @@
 <?php
 
 \OCP\User::checkLoggedIn();
-\OCP\App::checkAppEnabled('ownnote');
+\OCP\App::checkAppEnabled('shorten');
 
 
 //$newHost = "https://nowsci.com/s/";
