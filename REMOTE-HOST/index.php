@@ -20,6 +20,10 @@ function validateCode($string) {
 	}
 }
 
+function startsWith($haystack, $needle) {
+	return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== FALSE;
+}
+
 if ($enabled) {
 	$inurl = $_SERVER["REQUEST_URI"];
 	$code = substr($inurl, strpos($inurl, "?") + 1);    
