@@ -1,21 +1,16 @@
 
-var ranbefore = false;
-
 $(document).ready(function() {
 	if(/(public)\.php/i.exec(window.location.href)!=null) return;
 	setTimeout(addShareListener, 1000);
 });
 
 function addShareListener() {
-	if (!ranbefore) {
-		addGlobalListener('.nav-files');
-		addGlobalListener('.nav-sharingin');
-		addGlobalListener('.nav-sharingout');
-		addGlobalListener('.nav-sharinglinks');
-		addGlobalListener('.name');
-		addGlobalListener('.crumb');
-		ranbefore = true;
-	}
+	addGlobalListener('.nav-files');
+	addGlobalListener('.nav-sharingin');
+	addGlobalListener('.nav-sharingout');
+	addGlobalListener('.nav-sharinglinks');
+	addGlobalListener('.name');
+	addGlobalListener('.crumb');
 	$('.action-share').ready(function() {
 		$('.action-share').click(function() {
 			addListener('#linkCheckbox');
