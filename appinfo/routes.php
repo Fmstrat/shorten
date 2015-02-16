@@ -27,4 +27,4 @@ $application->registerRoutes($this, array('routes' => array(
         array('name' => 'shorten_api#preflighted_cors', 'url' => '/api/v0.2/{path}', 'verb' => 'OPTIONS', 'requirements' => array('path' => '.+')),
 )));
 
-$this->create('shorten_code', '/code.php')->action( function($params){ require '/var/www/owncloud/apps/shorten/lib/code.php'; } );
+$this->create('shorten_code', '/code.php')->action( function($params){ require 'shorten/lib/code.php'; } );
