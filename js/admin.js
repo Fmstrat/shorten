@@ -2,6 +2,11 @@ function endsWith(str, suffix) {
     return str.indexOf(suffix, str.length - suffix.length) !== -1;
 }
 
+function ocUrl(url) {
+	var newurl = OC.linkTo("shorten",url).replace("apps/shorten","index.php/apps/shorten");
+	return newurl;
+}
+
 $(document).ready(function() {
 	$('#shorten-host-url').change(function() {
 		var val = $(this).val();
@@ -9,19 +14,19 @@ $(document).ready(function() {
 			val = val.substring(0, val.length-1);
 			$(this).val(val);
 		}
-	        $.post(OC.linkTo("shorten","ajax/setval.php"), { host: val }, function (data) {
+	        $.post(ocUrl("setval"), { host: val }, function (data) {
 			 console.log('response', data);
         	});
 	});
 	$('#shorten-api').change(function() {
 		var val = $(this).val();
-	        $.post(OC.linkTo("shorten","ajax/setval.php"), { api: val }, function (data) {
+	        $.post(ocUrl("setval"), { api: val }, function (data) {
 			 console.log('response', data);
         	});
 	});
 	$('#shorten-type').change(function() {
 		var val = $(this).val();
-	        $.post(OC.linkTo("shorten","ajax/setval.php"), { type: val }, function (data) {
+	        $.post(ocUrl("setval"), { type: val }, function (data) {
 			 console.log('response', data);
         	});
 		if (val == "internal") {
