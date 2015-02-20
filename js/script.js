@@ -44,7 +44,8 @@ function replaceUrl() {
 }
 
 function makeUrl(curUrl, partUrl) {
-	$.post("/owncloud/index.php/apps/shorten/makeurl", { curUrl: curUrl }, function (data) {
+	var shortenurl = OC.linkTo("shorten","makeurl").replace("apps/shorten","index.php/apps/shorten");
+	$.post(shortenurl, { curUrl: curUrl }, function (data) {
 		$('#linkText').val(data);
 	});
 }
