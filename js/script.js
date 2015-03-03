@@ -1,10 +1,22 @@
 
+var SHORTENCOUNT = 0;
+var SHORTENDEBUG = true;
+
+function SHORTENDEBUGALERT(m) {
+	if (SHORTENDEBUG) {
+		alert(m + " C:" + SHORTENCOUNT);
+		SHORTENCOUNT++;
+	}
+}
+
 $(document).ready(function() {
+	SHORTENDEBUGALERT("ready");
 	if(/(public)\.php/i.exec(window.location.href)!=null) return;
 	setTimeout(addShareListener, 1000);
 });
 
 function addShareListener() {
+	SHORTENDEBUGALERT("addShareListener");
 	addGlobalListener('.nav-files');
 	addGlobalListener('.nav-sharingin');
 	addGlobalListener('.nav-sharingout');
@@ -20,6 +32,7 @@ function addShareListener() {
 }
 
 function addListener(o) {
+	SHORTENDEBUGALERT("addListener-"+o);
 	$(o).ready(function() {
 		$(o).click(function() {
 			setTimeout(replaceUrl, 750);
@@ -28,6 +41,7 @@ function addListener(o) {
 }
 
 function addGlobalListener(o) {
+	SHORTENDEBUGALERT("addGlobalListener-"+o);
 	$(o).ready(function() {
 		$(o).click(function() {
 			setTimeout(addShareListener, 1000);
@@ -36,14 +50,17 @@ function addGlobalListener(o) {
 }
 
 function replaceUrl() {
+	SHORTENDEBUGALERT("replaceUrl");
 	if ($('#linkText').css('display') == 'block') {
+		SHORTENDEBUGALERT("replaceUrl-makelink");
 		var curUrl = $('#linkText').val();
 		$('#linkText').val('Please wait...');
 		makeUrl(curUrl);
 	}
 }
 
-function makeUrl(curUrl, partUrl) {
+function makeUrl(curUrl) {
+	SHORTENDEBUGALERT("makeUrl-"+curUrl);
 	var shortenurl = OC.linkTo("shorten","makeurl").replace("apps/shorten","index.php/apps/shorten");
 	$.post(shortenurl, { curUrl: curUrl }, function (data) {
 		$('#linkText').val(data);
