@@ -24,7 +24,9 @@ function addShareListener() {
 	addGlobalListener('.name');
 	addGlobalListener('.crumb');
 	$('.action-share').ready(function() {
+		SHORTENDEBUGALERT("action-share ready");
 		$('.action-share').click(function() {
+			SHORTENDEBUGALERT("action-share click");
 			addListener('#linkCheckbox');
 			setTimeout(replaceUrl, 750);
 		});
@@ -34,7 +36,9 @@ function addShareListener() {
 function addListener(o) {
 	SHORTENDEBUGALERT("addListener-"+o);
 	$(o).ready(function() {
+		SHORTENDEBUGALERT("addListener-"+o+"-ready");
 		$(o).click(function() {
+			SHORTENDEBUGALERT("addListener-"+o+"-click");
 			setTimeout(replaceUrl, 750);
 		});
 	});
