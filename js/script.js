@@ -27,8 +27,10 @@ function addShareListener() {
 		SHORTENDEBUGALERT("action-share ready");
 		$('.action-share').click(function() {
 			SHORTENDEBUGALERT("action-share click");
-			addListener('#linkCheckbox');
-			setTimeout(replaceUrl, 750);
+			setTimeout(function() {
+				addListener('#linkCheckbox');
+				replaceUrl();
+			}, 750);
 		});
 	});
 }
