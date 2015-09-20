@@ -48,6 +48,8 @@ function generateUrl() {
 	//$newHost = "https://nowsci.com/s/";
 	$host = OCP\Config::getAppValue('shorten', 'host', '');
 	$type = OCP\Config::getAppValue('shorten', 'type', '');
+	$customUrl = OCP\Config::getAppValue('shorten', 'customUrl', '');
+	$customJSON = OCP\Config::getAppValue('shorten', 'customJSON', '');
 	$api = OCP\Config::getAppValue('shorten', 'api', '');
 	$curUrl = $_POST['curUrl'];
 	$ret = "";
@@ -68,7 +70,28 @@ function generateUrl() {
 		} else {
 			$ret = $curUrl;
 		}
-	} else {
+	} elseif ($type == "custom") {
+		$ret = $curUrl; //Failover
+		//use CURL to query
+		$query = sprintf($customUrl,urlencode($curUrl));
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $query); 
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+	        $raw = curl_exec($ch); 
+	        curl_close($ch);
+	        //OK, parse the JSON
+	        $customJSON = preg_replace("/[^a-zA-Z0-9\-\>]/", "", $customJSON); //remove unwanted characters due to security reason
+	        ob_start();
+	        ob_flush();
+	        eval('$json = json_decode(' . $raw . ');');
+	        ob_clean();
+		eval('echo $json' . $customJSON);
+		$url = ob_get_contents();
+		ob_end_clean();
+		//Finally output url after check if URL is valid
+	        if (filter_var($url, FILTER_VALIDATE_URL)) { $ret = url; } 
+	}else {
 		$ret = $curUrl;
 	}
 	return $ret;
