@@ -74,6 +74,7 @@ function generateUrl() {
 		$ret = $curUrl; //Failover
 		//use CURL to query
 		$query = sprintf($customUrl,urlencode($curUrl));
+		if (!((in_array(parse_url($query, PHP_URL_SCHEME),array('http','https')) && (filter_var($query, FILTER_VALIDATE_URL)))) { $query = ''; }
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $query); 
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -90,7 +91,7 @@ function generateUrl() {
 		$url = ob_get_contents();
 		ob_end_clean();
 		//Finally output url after check if URL is valid
-	        if (filter_var($url, FILTER_VALIDATE_URL)) { $ret = url; } 
+	        if ((in_array(parse_url($url, PHP_URL_SCHEME),array('http','https')) && (filter_var($url, FILTER_VALIDATE_URL))) { $ret = url; } 
 	}else {
 		$ret = $curUrl;
 	}
