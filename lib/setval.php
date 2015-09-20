@@ -17,5 +17,14 @@ function setAdminVal() {
 		OCP\Config::setAppValue('shorten', 'type', $_POST['type']);
 		#echo "type:".$_POST['type'];
 	}
+	if (isset($_POST['customUrl'])) {
+		OCP\Config::setAppValue('shorten', 'customUrl', $_POST['customUrl']);
+		#echo "type:".$_POST['type'];
+	}
+	if (isset($_POST['customJSON'])) {
+		OCP\Config::setAppValue('shorten', 'customJSON', $_POST['customJSON']);
+		#echo "type:".$_POST['type'];
+	}
+	
 }
 ?>
