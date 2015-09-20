@@ -84,9 +84,9 @@ function generateUrl() {
 	        $customJSON = preg_replace("/[^a-zA-Z0-9\-\>]/", "", $customJSON); //remove unwanted characters due to security reason
 	        ob_start();
 	        ob_flush();
-	        eval('$json = json_decode(' . $raw . ');');
+	        eval('$veryVeryVeryVeryVeryVeryVeryLoooongLoooongLoooongNameOfVarOfJSON = json_decode(' . $raw . ');'); //use long name due to security reason
 	        ob_clean();
-		eval('echo $json' . $customJSON);
+		eval('echo $veryVeryVeryVeryVeryVeryVeryLoooongLoooongLoooongNameOfVarOfJSON' . $customJSON);
 		$url = ob_get_contents();
 		ob_end_clean();
 		//Finally output url after check if URL is valid
