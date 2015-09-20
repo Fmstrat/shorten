@@ -32,11 +32,19 @@ $(document).ready(function() {
 		if (val == "internal") {
 			$('#shorten-internal-settings').css('display', 'block');
 			$('#shorten-googl-settings').css('display', 'none');
+			$('#shorten-custom-settings').css('display', 'none');
 		}
 		if (val == "googl") {
 			$('#shorten-internal-settings').css('display', 'none');
 			$('#shorten-googl-settings').css('display', 'block');
+			$('#shorten-custom-settings').css('display', 'none');
 		}
+		if (val == "custom") {
+			$('#shorten-internal-settings').css('display', 'none');
+			$('#shorten-googl-settings').css('display', 'none');
+			$('#shorten-custom-settings').css('display', 'block');
+		}
+		
 	});
 });
 
