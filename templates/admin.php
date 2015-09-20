@@ -14,6 +14,7 @@ $customJSON = $_['customJSON'];
 	<select id="shorten-type">
 		<option <?php if (!$type || $type == "internal" || $type == "") echo "selected"; ?> value="internal">Internal shortener and privacy filter</option>
 		<option <?php if ($type == "googl") echo "selected"; ?> value="googl">goo.gl</option>
+		<option <?php if ($type == "custom") echo "selected"; ?> value="custom">custom</option>
 	</select><br>
 	<br>
 	<div id="shorten-internal-settings" style="display: <?php if (!$type || $type == "internal" || $type == "") echo "block"; else echo "none"; ?>">
