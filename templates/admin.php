@@ -25,10 +25,10 @@ $customJSON = $_['customJSON'];
 		<input type="text" style="width: 250pt" name="shorten-api" id="shorten-api" value="<?php echo $api ?>" />
 	</div>
 	<div id="shorten-custom-settings" style="display: <?php if ($type == "custom") echo "block"; else echo "none"; ?>">
-		<label for="shorten-host-customUrl">Custom shorten provider query URL, use '%s' as the original URL going to be shorten. example:'http://short
+		<label for="shorten-customUrl">Custom shorten provider query URL, use '%s' as the original URL going to be shorten. example:'http://short
 	en-server/add/%s'. I did url encoding. You don't need to worry about that. Quotes ain't required.</label><br>
 		<input type="text" style="width: 250pt" name="shorten-customUrl" id="shorten-customUrl" value="<?php echo $customUrl ?>" />
-		<label for="shorten-host-customUrl">Object style path to extract the shorten URL in JSON , example: '->response->shortedURL' **note: '->' is required for array, this gives ability to access root level of JSON. Quotes ain't required.</label><br>
+		<label for="shorten-customJSON">Object style path to extract the shorten URL in JSON , example: '->response->shortedURL' **note: '->' is required for array, this gives ability to access root level of JSON. Quotes ain't required.</label><br>
 		<input type="text" style="width: 250pt" name="shorten-customJSON" id="shorten-customJSON" value="<?php echo $customJSON ?>" />
 	</div>
 </div>
