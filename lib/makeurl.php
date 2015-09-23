@@ -74,7 +74,7 @@ function generateUrl() {
 		$ret = $curUrl; //Failover
 		//use CURL to query
 		$query = sprintf($customUrl,urlencode($curUrl));
-		if (!((in_array(parse_url($query, PHP_URL_SCHEME),array('http','https')) && (filter_var($query, FILTER_VALIDATE_URL)))) { $query = ''; }
+		if (!((in_array(parse_url($query, PHP_URL_SCHEME),array('http','https')))) && (filter_var($query, FILTER_VALIDATE_URL))) { $query = ''; }
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $query); 
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -85,13 +85,19 @@ function generateUrl() {
 	        $customJSON = preg_replace("/[^a-zA-Z0-9\-\>]/", "", $customJSON); //remove unwanted characters due to security reason
 	        ob_start();
 	        ob_flush();
-	        eval('$veryVeryVeryVeryVeryVeryVeryLoooongLoooongLoooongNameOfVarOfJSON = json_decode(' . addslashes($raw) . ');'); //use long name due to security reason
+	        eval('$veryVeryVeryVeryVeryVeryVeryLoooongLoooongLoooongNameOfVarOfJSON = json_decode("' . addslashes($raw) . '");'); //use long name due to security reason
 	        ob_clean();
 		$url = eval('return $veryVeryVeryVeryVeryVeryVeryLoooongLoooongLoooongNameOfVarOfJSON' . $customJSON . ';');
 		 ob_get_contents();
 		ob_end_clean();
-		//Finally output url after check if URL is valid
-	        if ((in_array(parse_url($url, PHP_URL_SCHEME),array('http','https')) && (filter_var($url, FILTER_VALIDATE_URL))) { $ret = url; } 
+		
+		//Debug only
+            	OCP\Util::writeLog('shorten',"\$raw=$raw",0);
+            	OCP\Util::writeLog('shorten',"\$url=$url",0);   
+            	
+            	//Finally output url after check if URL is valid
+            if ((in_array(parse_url($url, PHP_URL_SCHEME),array('http','https'))) && (filter_var($url, FILTER_VALIDATE_URL))) { $ret = $url; } 
+            
 	}else {
 		$ret = $curUrl;
 	}
