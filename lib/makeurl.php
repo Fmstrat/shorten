@@ -115,7 +115,7 @@ function generateUrl() {
             			$ret = $url;
             		} 
 		} else {
-			$ret = $shortcode
+			$ret = $shortcode;
 		}
 	}else {
 		$ret = $curUrl;
