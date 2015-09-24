@@ -49,6 +49,8 @@ $owncloud_url = "https://mylongdomain.ext:port/owncloud";
 $enabled = true;
 #$enabled = false;
 ```
+#### *Step 2 - Option C: custom shorten-er*
+Use a custom shorten-er API from anywhere, or just from your own site(self-hosted)! Use JSON for respone data. See admin page in you ownCloud.
 
 ### Step 3: Configure the app
 
