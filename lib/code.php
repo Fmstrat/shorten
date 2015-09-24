@@ -13,7 +13,7 @@ function validateCode($string) {
 $code = $_GET['code'];
 if (validateCode($code)) {
 	$url = "";
-	$query = OCP\DB::prepare('SELECT * FROM *PREFIX*shorten WHERE shortcode=?');
+	$query = OCP\DB::prepare('SELECT * FROM *PREFIX*shorten WHERE type=\'internal\' AND shortcode=?');
 	$results = $query->execute(Array($code))->fetchAll();
 	if ($results) {
 		foreach($results as $result) {

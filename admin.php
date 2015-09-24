@@ -10,6 +10,8 @@ $tmpl = new OCP\Template('shorten', 'admin');
 $tmpl->assign('type', OCP\Config::getAppValue('shorten', 'type', ''));
 $tmpl->assign('host', OCP\Config::getAppValue('shorten', 'host', ''));
 $tmpl->assign('api', OCP\Config::getAppValue('shorten', 'api', ''));
+$tmpl->assign('customUrl', OCP\Config::getAppValue('shorten', 'customUrl', ''));
+$tmpl->assign('customJSON', OCP\Config::getAppValue('shorten', 'customJSON', ''));
 
 return $tmpl -> fetchPage();
 

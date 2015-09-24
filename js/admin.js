@@ -24,6 +24,18 @@ $(document).ready(function() {
 			 console.log('response', data);
         	});
 	});
+	$('#shorten-customUrl').change(function() {
+		var val = $(this).val();
+	        $.post(ocUrl("setval"), { customUrl: val }, function (data) {
+			 console.log('response', data);
+        	});
+	});
+	$('#shorten-customJSON').change(function() {
+		var val = $(this).val();
+	        $.post(ocUrl("setval"), { customJSON: val }, function (data) {
+			 console.log('response', data);
+        	});
+	});
 	$('#shorten-type').change(function() {
 		var val = $(this).val();
 	        $.post(ocUrl("setval"), { type: val }, function (data) {
@@ -32,11 +44,19 @@ $(document).ready(function() {
 		if (val == "internal") {
 			$('#shorten-internal-settings').css('display', 'block');
 			$('#shorten-googl-settings').css('display', 'none');
+			$('#shorten-custom-settings').css('display', 'none');
 		}
 		if (val == "googl") {
 			$('#shorten-internal-settings').css('display', 'none');
 			$('#shorten-googl-settings').css('display', 'block');
+			$('#shorten-custom-settings').css('display', 'none');
 		}
+		if (val == "custom") {
+			$('#shorten-internal-settings').css('display', 'none');
+			$('#shorten-googl-settings').css('display', 'none');
+			$('#shorten-custom-settings').css('display', 'block');
+		}
+		
 	});
 });
 

@@ -25,13 +25,19 @@
 				<name>shortcode</name>
 				<type>text</type>
 				<notnull>true</notnull>
-				<length>8</length>
+				<length>255</length>
 			</field>
 			<field>
 				<name>url</name>
 				<type>text</type>
 				<notnull>true</notnull>
 				<length>255</length>
+			</field>
+			<field>
+				<name>type</name>
+				<type>text</type>
+				<notnull>true</notnull>
+				<length>10</length>
 			</field>
 		</declaration>
 	</table>
