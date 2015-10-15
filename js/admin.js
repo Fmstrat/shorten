@@ -24,6 +24,22 @@ $(document).ready(function() {
 			 console.log('response', data);
         	});
 	});
+	$('#shorten-yourls-host-url').change(function() {
+		var val = $(this).val();
+		if (endsWith(val, "/")) {
+			val = val.substring(0, val.length-1);
+			$(this).val(val);
+		}
+	        $.post(ocUrl("setval"), { host: val }, function (data) {
+			 console.log('response', data);
+        	});
+	});
+	$('#shorten-yourls-api').change(function() {
+		var val = $(this).val();
+	        $.post(ocUrl("setval"), { api: val }, function (data) {
+			 console.log('response', data);
+        	});
+	});
 	$('#shorten-type').change(function() {
 		var val = $(this).val();
 	        $.post(ocUrl("setval"), { type: val }, function (data) {
@@ -32,10 +48,17 @@ $(document).ready(function() {
 		if (val == "internal") {
 			$('#shorten-internal-settings').css('display', 'block');
 			$('#shorten-googl-settings').css('display', 'none');
+			$('#shorten-yourls-settings').css('display', 'none');
 		}
 		if (val == "googl") {
 			$('#shorten-internal-settings').css('display', 'none');
 			$('#shorten-googl-settings').css('display', 'block');
+			$('#shorten-yourls-settings').css('display', 'none');
+		}
+		if (val == "yourls") {
+			$('#shorten-internal-settings').css('display', 'none');
+			$('#shorten-googl-settings').css('display', 'none');
+			$('#shorten-yourls-settings').css('display', 'block');
 		}
 	});
 });

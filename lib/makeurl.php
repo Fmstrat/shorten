@@ -68,6 +68,15 @@ function generateUrl() {
 		} else {
 			$ret = $curUrl;
 		}
+	} elseif ($type == "yourls") {
+		if ($api && $api != "") {
+			require_once __DIR__ . '/../lib/class.yourls.php';
+			$yourls = new yourls($api, $host);
+			$short = $yourls->s($curUrl);
+			$ret = $short;
+		} else {
+			$ret = $curUrl;
+		}
 	} else {
 		$ret = $curUrl;
 	}
