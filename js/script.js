@@ -21,7 +21,7 @@ function addShareListener() {
 
 function addListener(o) {
 	$(o).ready(function() {
-		$(o).click(function() {
+		$(o).change(function() {
 			setTimeout(replaceUrl, 750);
 		});
 	});

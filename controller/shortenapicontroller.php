@@ -32,8 +32,6 @@ class ShortenApiController extends ApiController {
 
     /**
      * @NoAdminRequired
-     * @CORS
-     * @NoCSRFRequired
      */
     public function makeurl() {
 	require_once 'shorten/lib/makeurl.php';
@@ -42,8 +40,6 @@ class ShortenApiController extends ApiController {
 
     /**
      * @NoAdminRequired
-     * @CORS
-     * @NoCSRFRequired
      */
     public function code() {
 	require_once 'shorten/lib/code.php';
@@ -51,8 +47,6 @@ class ShortenApiController extends ApiController {
     }
 
     /**
-     * @CORS
-     * @NoCSRFRequired
      */
     public function setval() {
 	require_once 'shorten/lib/setval.php';
