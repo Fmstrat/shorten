@@ -5,18 +5,22 @@ $(document).ready(function() {
 });
 
 function addShareListener() {
-	addGlobalListener('.nav-files');
-	addGlobalListener('.nav-sharingin');
-	addGlobalListener('.nav-sharingout');
-	addGlobalListener('.nav-sharinglinks');
-	addGlobalListener('.name');
-	addGlobalListener('.crumb');
-	$('.action-share').ready(function() {
-		$('.action-share').click(function() {
-			addListener('#linkCheckbox');
-			setTimeout(replaceUrl, 750);
+	if (OC.config && OC.config.version && parseFloat(OC.config.version) >= 8.2) {
+		replaceShare();
+	} else {
+		addGlobalListener('.nav-files');
+		addGlobalListener('.nav-sharingin');
+		addGlobalListener('.nav-sharingout');
+		addGlobalListener('.nav-sharinglinks');
+		addGlobalListener('.name');
+		addGlobalListener('.crumb');
+		$('.action-share').ready(function() {
+			$('.action-share').click(function() {
+				addListener('#linkCheckbox');
+				setTimeout(replaceUrl, 750);
+			});
 		});
-	});
+	}
 }
 
 function addListener(o) {
@@ -49,3 +53,32 @@ function makeUrl(curUrl, partUrl) {
 		$('#linkText').val(data);
 	});
 }
+
+function makeUrl2(curUrl, linkText) {
+	var shortenurl = OC.linkTo("shorten","makeurl").replace("apps/shorten","index.php/apps/shorten");
+	$.post(shortenurl, { curUrl: curUrl }, function (data) {
+		linkText.val(data);
+	});
+}
+
+function replaceUrl2(linkText) {
+		var curUrl = linkText.val();
+		linkText.val('Please wait...');
+		makeUrl2(curUrl, linkText);
+		lastRun = curUrl;
+}
+
+function replaceShare() {
+	OC.Share.ShareDialogLinkShareView.prototype.originitialize = OC.Share.ShareDialogLinkShareView.prototype.initialize;
+	OC.Share.ShareDialogLinkShareView.prototype.initialize = function(options) {
+		this.originitialize(options);
+		var view = this;
+		this.model.on('change:permissions', function() {
+			replaceUrl2(view.$el.find('#linkText'));
+		});
+		this.model.on('change:linkShare', function() {
+			replaceUrl2(view.$el.find('#linkText'));
+		});
+	}
+}
+
