@@ -10,5 +10,8 @@
 		<filesystem/>
 	</types>
 	<version>0.0.14</version>
+        <dependencies>
+            <owncloud min-version="7.0.3" max-version="9.1" />
+        </dependencies>
 	<default_enable/>
 </info>

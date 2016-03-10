@@ -68,16 +68,32 @@ function replaceUrl2(linkText) {
 		lastRun = curUrl;
 }
 
+function determineLinkBox(linkText) {
+	var found = false;
+	if (typeof linkText !== 'undefined')
+		if (typeof linkText.val() !== 'undefined')
+			found = true;
+	return found;
+}
+
 function replaceShare() {
 	OC.Share.ShareDialogLinkShareView.prototype.originitialize = OC.Share.ShareDialogLinkShareView.prototype.initialize;
 	OC.Share.ShareDialogLinkShareView.prototype.initialize = function(options) {
 		this.originitialize(options);
 		var view = this;
 		this.model.on('change:permissions', function() {
-			replaceUrl2(view.$el.find('#linkText'));
+			if (determineLinkBox(view.$el.find('#linkText'))) {
+				replaceUrl2(view.$el.find('#linkText'));
+			} else if (determineLinkBox(view.$el.find('#linkText-view15'))) {
+				replaceUrl2(view.$el.find('#linkText-view15'));
+			}
 		});
 		this.model.on('change:linkShare', function() {
-			replaceUrl2(view.$el.find('#linkText'));
+			if (determineLinkBox(view.$el.find('#linkText'))) {
+				replaceUrl2(view.$el.find('#linkText'));
+			} else if (determineLinkBox(view.$el.find('#linkText-view15'))) {
+				replaceUrl2(view.$el.find('#linkText-view15'));
+			}
 		});
 	}
 }
