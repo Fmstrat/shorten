@@ -25,8 +25,7 @@ function startsWith($haystack, $needle) {
 }
 
 if ($enabled) {
-	$inurl = $_SERVER["REQUEST_URI"];
-	$code = substr($inurl, strpos($inurl, "?") + 1);    
+	$code = $_SERVER["QUERY_STRING"];
 	if (validateCode($code)) {
 		$url = $owncloud_url."/index.php/apps/shorten/code.php?code=".$code;
 		ini_set('user_agent','ownCloud Downloader;');
