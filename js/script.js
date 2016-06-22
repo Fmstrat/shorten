@@ -86,6 +86,8 @@ function replaceShare() {
 				replaceUrl2(view.$el.find('#linkText'));
 			} else if (determineLinkBox(view.$el.find('#linkText-view15'))) {
 				replaceUrl2(view.$el.find('#linkText-view15'));
+			} else if (determineLinkBox(view.$el.find('.linkText'))) {
+				replaceUrl2(view.$el.find('.linkText'));
 			}
 		});
 		this.model.on('change:linkShare', function() {
@@ -93,6 +95,8 @@ function replaceShare() {
 				replaceUrl2(view.$el.find('#linkText'));
 			} else if (determineLinkBox(view.$el.find('#linkText-view15'))) {
 				replaceUrl2(view.$el.find('#linkText-view15'));
+			} else if (determineLinkBox(view.$el.find('.linkText'))) {
+				replaceUrl2(view.$el.find('.linkText'));
 			}
 		});
 	}
