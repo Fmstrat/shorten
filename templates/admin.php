@@ -8,11 +8,12 @@ $api = $_['api'];
 
 <div class="section">
         <h2>Shorten</h2>
-	<label for="shorten-host-type">Which type of URL shortener to use:</label><br>
+	<label for="shorten-type">Which type of URL shortener to use:</label><br>
 	<select id="shorten-type">
 		<option <?php if (!$type || $type == "internal" || $type == "") echo "selected"; ?> value="internal">Internal shortener and privacy filter</option>
 		<option <?php if ($type == "googl") echo "selected"; ?> value="googl">goo.gl</option>
 		<option <?php if ($type == "yourls") echo "selected"; ?> value="yourls">YOURLS</option>
+		<option <?php if ($type == "polr") echo "selected"; ?> value="polr">Polr 2</option>
 	</select><br>
 	<br>
 	<div id="shorten-internal-settings" style="display: <?php if (!$type || $type == "internal" || $type == "") echo "block"; else echo "none"; ?>">
@@ -24,10 +25,17 @@ $api = $_['api'];
 		<input type="text" style="width: 250pt" name="shorten-api" id="shorten-api" value="<?php echo $api ?>" />
 	</div>
 	<div id="shorten-yourls-settings" style="display: <?php if ($type == "yourls") echo "block"; else echo "none"; ?>">
-		<label for="shorten-host-url">The URL that contains the <i>yourls-api.php</i> file for your YOURLS install. Do not include the trailing slash.</label><br>
+		<label for="shorten-yourls-host-url">The URL that contains the <i>yourls-api.php</i> file for your YOURLS install. Do not include the trailing slash.</label><br>
 		<input type="text" style="width: 300pt" name="shorten-yourls-host-url" id="shorten-yourls-host-url" value="<?php echo $host ?>" />
 		<br><br>
-		<label for="shorten-api">Your YOURLS signature key.</label><br>
+		<label for="shorten-yourls-api">Your YOURLS signature key.</label><br>
 		<input type="text" style="width: 250pt" name="shorten-yourls-api" id="shorten-yourls-api" value="<?php echo $api ?>" />
+	</div>
+	<div id="shorten-polr-settings" style="display: <?php if ($type == "polr") echo "block"; else echo "none"; ?>">
+		<label for="shorten-polr-host-url">The URL that contains your Polr 2 install. Do not include the trailing slash.</label><br>
+		<input type="text" style="width: 300pt" name="shorten-polr-host-url" id="shorten-polr-host-url" value="<?php echo $host ?>" />
+		<br><br>
+		<label for="shorten-polr-api">Your Polr 2 api key.</label><br>
+		<input type="text" style="width: 250pt" name="shorten-polr-api" id="shorten-polr-api" value="<?php echo $api ?>" />
 	</div>
 </div>

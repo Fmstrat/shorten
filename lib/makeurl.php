@@ -77,6 +77,15 @@ function generateUrl() {
 		} else {
 			$ret = $curUrl;
 		}
+	} elseif ($type == "polr") {
+		if ($api && $api != "") {
+			require_once __DIR__ . '/../lib/class.polr.php';
+			$polr = new polr($api, $host);
+			$short = $polr->s($curUrl);
+			$ret = $short;
+		} else {
+			$ret = $curUrl;
+		}
 	} else {
 		$ret = $curUrl;
 	}
