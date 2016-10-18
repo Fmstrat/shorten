@@ -7,58 +7,69 @@ function ocUrl(url) {
 	return newurl;
 }
 
+function shortenSave(shorten_saveurl, shorten_key, shorten_val) {
+  var obj_data = {};
+  obj_data[shorten_key] = shorten_val;
+  $.post(shorten_saveurl, obj_data, function (data) {
+     console.log('response', data);
+  })
+    .done(function() {
+      OC.Notification.showTemporary("Settings saved");
+  })
+    .fail(function() {
+      OC.Notification.showTemporary("Could not save settings.");
+  });
+}
+
+function shortenHostURLChange(obj_elem, removeTrailing) {
+  var val = $(obj_elem).val();
+  if (removeTrailing && endsWith(val, "/")) {
+    val = val.substring(0, val.length-1);
+    $(obj_elem).val(val);
+  }
+  shortenSave(ocUrl("setval"), "host", val);
+}
+
 $(document).ready(function() {
 	$('#shorten-host-url').change(function() {
-		var val = $(this).val();
-		if (endsWith(val, "/")) {
-			val = val.substring(0, val.length-1);
-			$(this).val(val);
-		}
-	        $.post(ocUrl("setval"), { host: val }, function (data) {
-			 console.log('response', data);
-        	});
+		shortenHostURLChange(this, true);
 	});
 	$('#shorten-api').change(function() {
 		var val = $(this).val();
-	        $.post(ocUrl("setval"), { api: val }, function (data) {
-			 console.log('response', data);
-        	});
+    shortenSave(ocUrl("setval"), "api", val);
 	});
 	$('#shorten-yourls-host-url').change(function() {
-		var val = $(this).val();
-		if (endsWith(val, "/")) {
-			val = val.substring(0, val.length-1);
-			$(this).val(val);
-		}
-	        $.post(ocUrl("setval"), { host: val }, function (data) {
-			 console.log('response', data);
-        	});
+		shortenHostURLChange(this, true);
 	});
 	$('#shorten-yourls-api').change(function() {
 		var val = $(this).val();
-	        $.post(ocUrl("setval"), { api: val }, function (data) {
-			 console.log('response', data);
-        	});
+    shortenSave(ocUrl("setval"), "api", val);
+	});
+	$('#shorten-polr-host-url').change(function() {
+		shortenHostURLChange(this, true);
+	});
+	$('#shorten-polr-api').change(function() {
+		var val = $(this).val();
+    shortenSave(ocUrl("setval"), "api", val);
 	});
 	$('#shorten-type').change(function() {
 		var val = $(this).val();
-	        $.post(ocUrl("setval"), { type: val }, function (data) {
-			 console.log('response', data);
-        	});
+    shortenSave(ocUrl("setval"), "type", val);
+    $('#shorten-internal-settings').css('display', 'none');
+    $('#shorten-googl-settings').css('display', 'none');
+    $('#shorten-yourls-settings').css('display', 'none');
+    $('#shorten-polr-settings').css('display', 'none');
 		if (val == "internal") {
 			$('#shorten-internal-settings').css('display', 'block');
-			$('#shorten-googl-settings').css('display', 'none');
-			$('#shorten-yourls-settings').css('display', 'none');
 		}
 		if (val == "googl") {
-			$('#shorten-internal-settings').css('display', 'none');
 			$('#shorten-googl-settings').css('display', 'block');
-			$('#shorten-yourls-settings').css('display', 'none');
 		}
 		if (val == "yourls") {
-			$('#shorten-internal-settings').css('display', 'none');
-			$('#shorten-googl-settings').css('display', 'none');
 			$('#shorten-yourls-settings').css('display', 'block');
+		}
+		if (val == "polr") {
+			$('#shorten-polr-settings').css('display', 'block');
 		}
 	});
 });
