@@ -11,7 +11,7 @@
 	</types>
 	<version>0.0.15</version>
         <dependencies>
-            <owncloud min-version="7.0.3" max-version="9.1" />
+            <owncloud min-version="7.0.3" max-version="11.1" />
         </dependencies>
 	<default_enable/>
 </info>
